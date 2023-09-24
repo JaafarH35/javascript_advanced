@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+
+<!--styles-->
+
+    <style>
+
+        body{
+    
+            background: rgb(170, 209, 173);
+        }
+
+      
+    
+    
+        #x {
+    
+            background-color: rgb(246, 253, 251);
+    
+            display:inline-flex;
+        }
+    
+        .fixed-button {
+        position: fixed;
+        bottom: 20px; /* تحديد المسافة من الأسفل */
+        right: 20px; /* تحديد المسافة من اليمين */
+        width: 70px; /* عرض الزر */
+        height: 70px; /* ارتفاع الزر */
+        background-color: #3498db; /* لون خلفية الزر */
+        border-radius: 50%; /* تدوير الحواف ليكون شكل دائري */
+        text-align: center;
+        line-height: 40px;
+        color: white; /* لون النص داخل الزر */
+        font-size: 50px;
+      }
+    
+       
+    
+        </style>
+
+        <!--//styles-->
+
+</head>
+<body>
+
+    <div  id= "addpostid" class="fixed-button" data-bs-toggle="modal" data-bs-target="#addpost">+</div>
+    <!-- modal -->
+
+
+    <!-- add post -->
+
+    <div class="modal fade" id="addpost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" > add new post </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label" >Title</label>
+                    <input type="text" class="form-control" id="title2" >
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label" >body</label>
+                    <textarea   id="body1" style="width:100%; height: 150px; border-color:blue resi;resize: none; "> </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">image</label>
+                    <input type="file" class="form-control" id="imageid" >
+                </div>
+            
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addnewpost()">add post</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    <!--  //add post -->
+
+    
+            <!-- login modal-->
+
+            <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" >Login </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" >UserName</label>
+                            <input type="text" class="form-control" id="user" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="pass"  >
+                        </div>
+                    
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="loginfun()">Submit</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                
+            <!--// login modal//-->
+
+
+            <!-- regsermodal-->
+
+            <div class="modal fade" id="regstermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" >register </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+
+                           
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Name</label>
+                                <input type="text" class="form-control" id="name1" >
+                            </div>
+
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" >UserName</label>
+                            <input type="text" class="form-control" id="user1" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="pass1" >
+                        </div>
+                        
+                    
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="regestierfunc()">Register</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!--//regester modalre-->
+    <!-- //modal -->
+
+                        <!-- navbar  -->
+                        <div class="container my-1">
+                            
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light  shadow p-3 mb-5 bg-body rounded  ">
+                                <div class="container-fluid">
+                                <a class="navbar-brand" href="#">Jaafar Posts</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                    <div class="navbar-nav">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link" href="#">Profile</a>
+                                    
+                                    
+                                    </div>
+
+                                    <div> 
+                                       
+                                        <span id ="lognameuser"> dfdsfds</span>
+                                        <img src="" alt="" style="width: 40px;height: 40px;  " class="rounded-circle">
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div id="y">
+
+                        
+                                    
+                                    <button type="button" class="btn btn-outline-danger mx-3" onclick="showf()">logout</button>
+                                    
+
+                                </div>
+                                    <div id="x" >
+
+
+                                            <button type="button" class="btn btn-outline-success mx-2" data-bs-toggle="modal" data-bs-target="#loginmodal">login </button>
+                                            <button type="button" class="btn btn-outline-success mx-3"data-bs-toggle="modal" data-bs-target="#regstermodal">register</button>
+                                            
+
+                                      
+
+                                    </div>
+                                
+                                
+                                
+                            </nav>
+                        
+                        
+                        </div>
+
+                        <!--  //navbar  -->
+
+
+            <!--posts -->
+            
+                <div class="container ">
+
+                    <div id="posts">
+                        
+                        <!--post-->
+                                <div id="post" >
+
+                                    <div class="card   shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                                        <div class="card-header">
+                                        <img src="./imge/avatar7.png" alt="" style="width: 40px;height: 40px;  " class="rounded-circle">
+                                        <span> @jafar</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="./imge/download.jpg" alt="" style="width:100% ;">
+                                
+                                            <h6 style="color: rgb(167, 167, 149);" class="mt-1"> 2 min ago </h6>
+                                            <h5> Hello </h5>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore qui illum ipsam voluptate facilis totam eius, quas dignissimos aut error sed ut illo sunt rerum, magnam deserunt. Labore, nostrum rem.
+                                            </p>
+                                
+                                            <hr>
+                                            <div>
+                                
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                                                    </svg>
+                                                    (3) comment
+                                                    
+                                                </span>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                    
+                    <!--post -->
+        
+                    
+                                            <div id="post" >
+
+                                                <div class="card   shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                                                    <div class="card-header">
+                                                    <img src="./imge/avatar7.png" alt="" style="width: 40px;height: 40px;  " class="rounded-circle">
+                                                    <span> @jafar</span>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <img src="./imge/download.jpg" alt="" style="width:100% ;">
+                                            
+                                                        <h6 style="color: rgb(167, 167, 149);" class="mt-1"> 2 min ago </h6>
+                                                        <h5> Hello </h5>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore qui illum ipsam voluptate facilis totam eius, quas dignissimos aut error sed ut illo sunt rerum, magnam deserunt. Labore, nostrum rem.
+                                                        </p>
+                                            
+                                                        <hr>
+                                                        <div>
+                                            
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                                                                </svg>
+                                                                (3) comment
+                                                                
+                                                            </span>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                    
+                  <!--//post -->
+    
+     <!--posts --> 
+    
+</body>
+
+<script>
+
+    // ---------------Functions-----------------//
+    
+    
+    hidef()
+    
+    getallpost()
+    
+                 function getallpost()
+    {
+    
+        axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
+      .then(function (response) {
+        // handle success
+        let posts = response.data.data
+    
+        document.getElementById("posts").innerHTML =" "
+    
+        for(post of posts )
+        {
+    
+                     let postTitle = ""
+    
+                        if(post.title != null)
+                        {
+                            postTitle = post.title
+    
+                        }
+    
+            let content = `
+            
+            <div id ="post">
+    
+    <div class="card   shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <div class="card-header">
+        <img src="./imge/avatar7.png" alt="" style="width: 40px;height: 40px;  " class="rounded-circle">
+        <span> ${post.author.username}</span>
+        </div>
+        <div class="card-body">
+            <img src=${post.image} alt="" style="width:100% ;">
+    
+            <h6 style="color: rgb(167, 167, 149);" class="mt-1"> ${post.created_at} </h6>
+            <h5> ${postTitle} </h5>
+            <p>
+              ${post.body}
+            </p>
+    
+            <hr>
+            <div>
+    
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                      </svg>
+                    (${post.comments_count}) comment
+    
+                                            <span>
+    
+                                                <button class="btn-outline-danger rounded-circle "  style="color: red;" > tag1</button>
+    
+                                            </span>
+    
+    
+                                            <span>
+    
+                                                <button class="btn-outline-danger rounded-circle "  style="color: red;" > tag1</button>
+    
+                                            </span>
+    
+    
+                                            <span>
+    
+                                                <button class="btn-outline-danger rounded-circle "  style="color: red;" > tag1</button>
+    
+                                            </span>
+                    
+               </span>
+            </div>
+        
+        </div>
+    </div>
+    
+    </div>
+            
+            
+            `
+    
+            document.getElementById("posts").innerHTML += content
+    
+            console.log(content)
+            
+        }
+    
+        
+      })
+    
+    }
+    
+    function addnewpost() {
+      const body1 = document.getElementById("body1").value;
+      const title1 = document.getElementById("title2").value;
+      const image1 = document.getElementById("imageid").files[0];
+      const token = localStorage.getItem("token");
+    
+      // إنشاء كائن FormData وإضافة البيانات إليه
+      const formData = new FormData();
+      formData.append("image", image1);
+      formData.append("body", body1);
+      formData.append("title", title1);
+    
+      // تجهيز عنوان الطلب والهيدرز
+      const url = "https://tarmeezacademy.com/api/v1/posts"; // عنوان الخادم
+      const headers = {
+        "Authorization": `Bearer ${token}`
+      };
+    
+      // إرسال البيانات باستخدام axios
+      axios.post(url, formData, {
+        headers: headers
+      })
+      .then(function (response) {
+        console.log(response);
+                                //closed modal
+                                var myModalEl = document.getElementById('addpost');
+                                var modal = bootstrap.Modal.getInstance(myModalEl)
+                                modal.hide();
+                                //closed modal//
+
+        getallpost()
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    }
+    
+                 function hidef()
+                {
+    
+    
+                    let tokens = localStorage.getItem("token")
+                    if(tokens != null ){
+    
+                        var div = document.getElementById("x");
+                             div.style.display = "none";
+                             var div = document.getElementById("y");
+                            div.style.display = "block";
+    
+                            var div = document.getElementById("addpostid")
+                            div.style.display = "block"
+                            
+        
+    
+                    }
+    
+                    else
+                    {
+    
+                      
+                        var div = document.getElementById("y");
+                            div.style.display = "none";
+    
+                            var div = document.getElementById("x");
+                             div.style.display = "block";
+                             
+                            var div = document.getElementById("addpostid")
+                            div.style.display = "none"
+                    }
+    
+                
+    
+                }
+    
+    
+                 function showf()
+    
+                    {
+    
+                        localStorage.removeItem("token")
+                        localStorage.removeItem("user")
+    
+                        var div = document.getElementById("x");
+                        div.style.display = "block";
+    
+                        
+                        var div2 = document.getElementById("y");
+                        div.style.display = "none";
+                        hidef()
+    
+                        
+    
+                    }
+    
+    
+    
+                 function loginfun()
+                {
+                    const user = document.getElementById("user").value
+                    const pass = document.getElementById("pass").value
+    
+                    console.log(user + pass)
+    
+    
+                    const params={
+    
+                                        "username" : user,
+                                        "password" : pass
+                                }
+    
+    
+                    axios.post ('https://tarmeezacademy.com/api/v1/login',params)
+                    .then( function ( response){
+    
+                            alert ("sucses")
+                            
+    
+                            localStorage.setItem("token",response.data.token)
+                            localStorage.setItem("user",JSON.stringify(response.data.user))
+    
+                                        //closed modal
+                                    var myModalEl = document.getElementById('loginmodal');
+                                    var modal = bootstrap.Modal.getInstance(myModalEl)
+                                    modal.hide();
+                                        //closed modal//
+    
+                                     hidef()
+                                                   
+    
+                    })
+    
+                    
+                }
+    
+                 function regestierfunc()
+
+                            {
+    
+                                    
+                                    const name1 = document.getElementById("name1").value
+                                    const user1 = document.getElementById("user1").value
+                                    const pass1 = document.getElementById("pass1").value
+                                    
+    
+                                    console.log(name1 + user1+ pass1)
+    
+    
+                                    const params={
+    
+                                        
+    
+                                        "username" : user1,
+                                        "password" : pass1,
+                                        "name" : name1
+                                    }
+    
+    
+                                    axios.post ('https://tarmeezacademy.com/api/v1/register',params)
+                                    .then( function ( response){
+    
+                                      alert("adsasdasdasd")
+    
+    
+                                    localStorage.setItem("token",response.data.token)
+                                    localStorage.setItem("user",JSON.stringify(response.data.user))
+    
+                                    //closed modal
+                                    var myModalEl = document.getElementById('regstermodal');
+                                    var modal = bootstrap.Modal.getInstance(myModalEl)
+                                    modal.hide();
+                                    //closed modal//
+    
+                                    hidef()
+                                            
+    
+                                    })
+    
+    
+                            }
+
+                       
+                            // function getcurrentuser()
+                            // {
+                            //     let cureentuser = null
+
+                                
+
+
+                            // }
+    
+    </script>
+</html>
